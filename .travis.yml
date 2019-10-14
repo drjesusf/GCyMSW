@@ -1,5 +1,6 @@
 language: csharp
-solution: webapiApp.sln
+mono: none
+solution: app/webapiApp.sln
 # TODO: Config test project
 dotnet: 2.1.802
 script: 
