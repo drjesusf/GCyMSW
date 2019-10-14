@@ -1,0 +1,7 @@
+language: csharp
+solution: webapiApp.sln
+# TODO: Config test project
+dotnet: 2.1.802
+script: 
+  - dotnet restore
+  - dotnet test
