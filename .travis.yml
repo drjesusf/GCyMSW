@@ -7,6 +7,7 @@ script:
   - cd app
   - dotnet restore
   - dotnet test
+  - cd ..
 deploy:
   provider: cloudfoundry
   username: davidflores0584@gmail.com
