@@ -7,3 +7,11 @@ script:
   - cd app
   - dotnet restore
   - dotnet test
+deploy:
+  provider: cloudfoundry
+  username: davidflores0584@gmail.com
+  password: D@vid0584
+  api: https://api.run.pivotal.io
+  organization: davidflores0584-org
+  space: development
+  manifest: manifest-dev.yml
