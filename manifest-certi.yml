@@ -1,3 +1,5 @@
 applications:
-  - name: webapiAppcerti
+  - name: webapiApp.certi
+    memory: 512M
+    instances: 1
     buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack
