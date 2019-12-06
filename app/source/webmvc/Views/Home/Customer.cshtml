@@ -3,27 +3,61 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <script src="lib/knockoutJS/knockout-3.5.1.js"></script>
 </head>
 <body>
     <br/><br />
-<button type="button" onclick="load()">Saludar</button>
+    
+<h3>Resultados de an&aacute;lisis:</h3>
 <br/><br />
-<p id="saludo"></p>
+<button data-bind="click: getAllCustomers" class=" btn btn-info glyphicon glyphicon-refresh"></button>    
+<br/><br />
+<table class="table table-striped" >
+    <thead>
+    <tr>
+        <th>Cliente</th>
+        <th>Problema de salud</th>
+        <th>Riesgo relativo</th>
+        <th>Nivel</th>
+        <th>Edición</th>
+    </tr>
+    </thead>
+    <tbody data-bind="foreach: customers">
+        <tr>
+            <td data-bind="text: customer"></td>
+            <td data-bind="text: healthProblem"></td>
+            <td data-bind="text: relativeRisk"></td>
+            <td data-bind="text: level"></td>
+            <td>
+                <button class="btn btn-sm  btn-info glyphicon glyphicon-edit"></button>
+                <button class="btn btn-sm btn-danger glyphicon glyphicon-remove"></button>
+            </td>
+        </tr>
+    </tbody>
 
+    
+</table>
 <script>
-    function load() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            var response = this;
-            console.log(response);
-            if (this.readyState === 4 && this.status === 200) {
-                document.getElementById("saludo").innerHTML = this.response;
-            }
+    function AppViewModel() {
+        var self = this;
+ 
+        self.customers = ko.observableArray([]);
+
+        self.getAllCustomers = function() {
+            $.getJSON("../api/values", function (data) {
+                var json = ko.toJS(data);
+                self.customers(json);
+            });
         };
-        xhttp.open("GET", "../api/values", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send();
+        self.addPerson = function() {
+            self.people.push({ name: "New at " + new Date() });
+        };
+ 
+        self.removePerson = function() {
+            self.people.remove(this);
+        }
     }
+    ko.applyBindings(new AppViewModel());
 </script>
 </body>
 

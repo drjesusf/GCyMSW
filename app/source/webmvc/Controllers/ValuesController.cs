@@ -1,31 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using Microsoft.AspNetCore.Mvc;
+using webmvc.Models;
 
 namespace webmvc.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        // GET: api/<controller>
         [HttpGet]
-        public string Get()
+        public AnalysisResult[] Get()
         {
-            return "Hola gente de configuracion ;-)";
+            return new[]
+            {
+                new AnalysisResult{Customer = "Pepe Perez",HealthProblem = "Cancer de Pulmon",RelativeRisk = "6,07%",Level = "Bajo"},
+                new AnalysisResult{Customer = "Pepe Perez",HealthProblem = "Cáncer de Colon",RelativeRisk = "6,07%",Level = "Bajo"},
+                new AnalysisResult{Customer = "Pepe Perez",HealthProblem = "Cáncer de Laringe",RelativeRisk = "6,07%",Level = "Bajo"},
+                new AnalysisResult{Customer = "Pepe Perez",HealthProblem = "Cáncer de Hueso",RelativeRisk = "6,07%",Level = "Bajo"},
+                new AnalysisResult{Customer = "Pepe Perez",HealthProblem = "Cancer de Vejiga",RelativeRisk = "6,07%",Level = "Bajo"},
+                new AnalysisResult{Customer = "Pepe Perez",HealthProblem = "Linfoma de Hodgkin",RelativeRisk = "6,07%",Level = "Bajo"},
+                new AnalysisResult{Customer = "Pepe Perez",HealthProblem = "Gota",RelativeRisk = "6,07%",Level = "Bajo"},
+                new AnalysisResult{Customer = "Pepe Perez",HealthProblem = "Epilepsia",RelativeRisk = "6,07%",Level = "Bajo"},
+                new AnalysisResult{Customer = "Pepe Perez",HealthProblem = "Glaucoma",RelativeRisk = "6,07%",Level = "Bajo"},
+                new AnalysisResult{Customer = "Pepe Perez",HealthProblem = "Rinitis Alergica",RelativeRisk = "6,07%",Level = "Bajo"},
+                new AnalysisResult{Customer = "Pepe Perez",HealthProblem = "Cáncer de Higado",RelativeRisk = "6,07%",Level = "Bajo"}
+            };
         }
 
-        // GET api/<controller>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<controller>
         [HttpPost]
         public void Post([FromBody]string value)
         {
